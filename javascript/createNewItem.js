@@ -19,7 +19,6 @@ createItemForm.addEventListener("submit", async (event) => {
 
     try {
         const response = await axios.post(`http://127.0.0.1:8000/api/items/?user=true`, data, config);
-        console.log(response.data);
     } catch (error) {
         console.log(error);
     }

@@ -2,12 +2,9 @@ async function fetchItemDetail() {
     // fetching the id
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
-    console.log(id);
     const token = localStorage.getItem("token");
     const response = await axios.get('http://127.0.0.1:8000/api/items/'+id, { headers: {"Authorization" : `Token ${token}`} });
     const data = await response.data;
-    console.log(data);
-    console.log(data.hi);
 
     const name = "Name: " + data.name;
     const description ="Description: " + data.description;
@@ -40,7 +37,6 @@ async function fetchItemDetail() {
 
         try {
             const response = await axios.post(`http://127.0.0.1:8000/api/bids/`, data, config);
-            console.log(response.data);
         } catch (error) {
             console.log(error);
             alert("Failed ot place a bid")
@@ -53,5 +49,4 @@ fetchItemDetail();
 
 function createBid(event, itemId){
     event.preventDefault();
-    console.log("HAHAHA");
 }

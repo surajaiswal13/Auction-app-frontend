@@ -13,7 +13,6 @@ async function fetchItems(filter=false, search=false) {
     }
     else if(search == true){
       const search = document.getElementById("search").value;
-      console.log(search);
       const url = 'http://127.0.0.1:8000/api/items?search='+search
       response = await axios.get(url, { headers: {"Authorization" : `Token ${token}`} });
       data = await response.data;
@@ -45,7 +44,6 @@ async function fetchItems(filter=false, search=false) {
         para.innerHTML = name + "<br>" + description + "<br>" + startingPrice 
                             + "<br>" + highestBid + "<br>" + endTime + "<br>" 
                             + "<img src="+ image +" alt='No Image found' width='200' height='200'>";
-        // # get a button add eventlistner on that
         link.addEventListener("click", () => goToSingleItem(item));
         div.appendChild(link)
         listItem.appendChild(para);

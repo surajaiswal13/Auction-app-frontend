@@ -9,7 +9,6 @@ registerBtn.addEventListener("click", (e) => {
 
 const loginBtn = document.getElementById("loginBtn");
 loginBtn.addEventListener("click", (e) => {
-    // e.preventDefault();
     
     try {
         window.location.href = "login.html";

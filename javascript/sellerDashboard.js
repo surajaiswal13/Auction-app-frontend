@@ -63,7 +63,6 @@ async function updateItem(itemId) {
 
     try {
         const response = await axios.patch(`http://127.0.0.1:8000/api/items/${itemId}/?user=true`, data, config);
-        console.log(response.data);
     } catch (error) {
         console.log(error);
     }
@@ -75,7 +74,6 @@ async function deleteItem(itemId) {
     const config = { headers: {"Authorization" : `Token ${token}`} }
     try {
         const response = await axios.delete(`http://127.0.0.1:8000/api/items/${itemId}/?user=true`, config);
-        console.log(response.data);
     } catch (error) {
         console.log(error);
     }
