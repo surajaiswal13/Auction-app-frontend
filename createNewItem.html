@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Auction App</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <br>
+        <div class="container text-center">
+            <h1>Create a New Item to list</h1>
+        </div>
+        <br>
+        <form method="POST" action="/submit" id="create-item-form">
+            <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+            <label for="startingPrice">Starting Price:</label>
+            <input type="number" step="0.01" class="form-control" id="startingPrice" name="startingPrice" required>
+            </div>
+            <div class="form-group">
+            <label for="end_time">End Time:</label>
+            <input type="datetime-local" class="form-control" id="endTime" name="endTime" required>
+            </div>
+            <div class="form-group">
+                <label for="biddingStatus">Bidding Status:</label>
+                <select class="form-control" id="biddingStatus" name="biddingStatus" required>
+                    <option value="OPEN">Open</option>
+                    <option value="CLOSED">Closed</option>
+                </select>
+            </div>
+            <div class="form-group">
+            <label for="category">Category:</label>
+            <select class="form-control" id="category" name="category" required>
+                <option value="PROPERTY">Property</option>
+                <option value="CARS">Cars</option>
+                <option value="BIKES">Bikes</option>
+            </select>
+            </div>
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" class="form-control-file" id="image" name="image">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- <script>
+        // async function createItem(event) {
+        //     event.preventDefault();
+        //     const token = localStorage.getItem("token");
+        //     const data = {
+        //         name: document.getElementById("name").value,
+        //         description: document.getElementById("description").value,
+        //         starting_price: document.getElementById("startingPrice").value,
+        //         end_time: document.getElementById("endTime").value,
+        //         bidding_status: document.getElementById("biddingStatus").value,
+        //         category: document.getElementById("category").value,
+        //         };
+
+        //     const config = { headers: {"Authorization" : `Token ${token}`} }
+
+        //     try {
+        //         const response = await axios.post(`http://127.0.0.1:8000/api/items/?user=true`, data, config);
+        //         console.log(response.data);
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        // }
+
+        const createItemForm = document.getElementById("create-item-form");
+
+        createItemForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const token = localStorage.getItem("token");
+            const data = {
+                name: document.getElementById("name").value,
+                description: document.getElementById("description").value,
+                starting_price: document.getElementById("startingPrice").value,
+                end_time: document.getElementById("endTime").value,
+                bidding_status: document.getElementById("biddingStatus").value,
+                category: document.getElementById("category").value,
+                image: document.getElementById("image").files[0]
+                };
+
+            const config = { headers: {"Authorization" : `Token ${token}`,
+                                        'Accept': 'application/json',
+                                        'Content-Type': 'multipart/form-data',} }
+
+            try {
+                const response = await axios.post(`http://127.0.0.1:8000/api/items/?user=true`, data, config);
+                console.log(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        )
+    </script> -->
+</body>
+</html>

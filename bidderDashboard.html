@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Auction App</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container text-center">
+    <h3>Filtering with Category and Bidding Status and End Time</h3>
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="category">Category:</label>
+          <select class="form-control" id="category">
+            <option value="">All Categories</option>
+            <option value="CARS">Cars</option>
+            <option value="BIKES">Bikes</option>
+            <option value="PROPERTY">Property</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="biddingStatus">Bidding Status:</label>
+          <select class="form-control" id="biddingStatus">
+            <option value="">All Bidding Statuses</option>
+            <option value="OPEN">Open</option>
+            <option value="CLOSED">Closed</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+                <label for="end_time">End Time:</label>
+                <input type="datetime-local" class="form-control" id="endTime" name="endTime">
+            </div>
+      </div>
+      <button type="submit" class="btn btn-primary" id="filterForm">Filter</button>
+    </form>
+  </div>
+  <br>
+  <div class="container text-center">
+    <h3>Search Items</h3>
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="search">Search here:</label>
+          <input type="text" class="form-control" id="search" placeholder="Enter your search term">
+        </div>
+        <div class="form-group col-md-6">
+          <button type="submit" class="btn btn-primary mt-4" id="searchForm">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- ADD SEARCH BUTTON -->
+    <div class="container">
+        <br>
+    <div class="text-center">
+      <h1>Item's Listing</h1>
+            
+    </div>
+      <ul id="items" class="list-group"></ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="javascript/bidderDashboard.js"></script>
+    <!-- <script>
+        async function fetchItems(filter=false, search=false) {
+            const token = localStorage.getItem("token");
+            let response;
+            let data;
+
+            if (filter == true){
+              const category = document.getElementById("category").value;
+              const biddingStatus = document.getElementById("biddingStatus").value;
+              const endTime = document.getElementById("endTime").value;
+              const url = 'http://127.0.0.1:8000/api/items?category='+category+'&bidding_status='+biddingStatus+'&end_time='+endTime
+              response = await axios.get(url, { headers: {"Authorization" : `Token ${token}`} });
+              data = await response.data;
+            }
+            else if(search == true){
+              const search = document.getElementById("search").value;
+              console.log(search);
+              const url = 'http://127.0.0.1:8000/api/items?search='+search
+              response = await axios.get(url, { headers: {"Authorization" : `Token ${token}`} });
+              data = await response.data;
+            }
+            else {
+              response = await axios.get('http://127.0.0.1:8000/api/items', { headers: {"Authorization" : `Token ${token}`} });
+              data = await response.data;
+            }
+
+            const itemsList = document.getElementById("items");
+            itemsList.innerHTML = ""
+
+            // Iterate through each item and create a list item for each
+            for (let item of data) {
+                const listItem = document.createElement("li");
+                const link = document.createElement("a");
+                const para = document.createElement("p")
+                link.classList.add('btn', 'btn-success');
+                const div = document.createElement("div")
+                div.classList.add('text-center');
+                link.textContent = "Place a bid";
+                const name = "Name: " + item.name
+                const description = "Description: " + item.description;
+                const startingPrice = "Starting Price: " + item.starting_price;
+                const highestBid = "Highest Bid: " + (item.highest_bid == null ? "NA" : item.highest_bid);
+                const time = new Date(item.end_time);
+                const endTime = "End time: " + time;
+                const image = item.image;
+                para.innerHTML = name + "<br>" + description + "<br>" + startingPrice 
+                                    + "<br>" + highestBid + "<br>" + endTime + "<br>" 
+                                    + "<img src="+ image +" alt='No Image found' width='200' height='200'>";
+                // # get a button add eventlistner on that
+                link.addEventListener("click", () => goToSingleItem(item));
+                div.appendChild(link)
+                listItem.appendChild(para);
+                listItem.appendChild(div);
+                itemsList.appendChild(listItem);
+
+            }
+        }
+
+    fetchItems()
+
+    const filterBtn = document.getElementById("filterForm");
+    filterBtn.addEventListener("click",function(event) {
+      event.preventDefault();
+      fetchItems(filter=true);
+    });
+
+    const searchBtn = document.getElementById("searchForm");
+    searchBtn.addEventListener("click",function(event) {
+      event.preventDefault();
+      fetchItems(filter=false, search=true);
+    });
+
+    async function goToSingleItem(item) {
+        try {
+            const url = `http://127.0.0.1:5501/bidderDetailDashboard.html?id=${item.id}`;
+            window.location.href = url;
+        } catch (error) {
+            console.error(error);   
+        }
+    }
+    </script> -->
+
+</body>
+</html>

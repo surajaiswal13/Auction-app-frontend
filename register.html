@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container" style="margin-top: 50px;">
+      <h1 class="text-center">Token-Based Authentication</h1>
+      <hr>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <form>
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" class="form-control" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" id="password" required>
+            </div>
+            <!-- is seller or bidder -->
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="bidder" checked="checked">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Bidder
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="seller">
+                <label class="form-check-label" for="flexCheckChecked">
+                  Seller
+                </label>
+              </div>
+            <button type="submit" class="btn btn-primary btn-block" id="registerBtn">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="javascript/register.js"></script>
+  <!-- <script>
+    // const loginBtn = document.getElementById("registerBtn");
+    // loginBtn.addEventListener("click", async (e) => {
+    //   e.preventDefault();
+
+    //   const username = document.getElementById("username").value;
+    //   const email = document.getElementById("email").value;
+    //   const password = document.getElementById("password").value;
+
+    //   try {
+    //     const response = await axios.post("http://127.0.0.1:8000/api/auth/login/", {
+    //       username,
+    //       email,
+    //       password,
+    //     });
+
+    //     localStorage.setItem("token", response.data.token);
+    //     window.location.href = "dashboard.html";
+    //   } catch (error) {
+    //     alert("Incorrect username or password. Please try again.");
+    //   }
+    // });
+
+    const registerBtn = document.getElementById("registerBtn")
+    registerBtn.addEventListener("click", async (e) => {
+        e.preventDefault()
+
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const isBidder = document.getElementById("bidder").checked;
+        const isSeller = document.getElementById("seller").checked;
+        
+        try {
+            const response = await axios.post("http://127.0.0.1:8000/api/auth/register/", {
+                username: username,
+                email: email,
+                password: password,
+                is_seller: isBidder,
+                is_bidder: isSeller
+            });
+            console.log(response.data.token)
+            localStorage.setItem("token", response.data.token);
+            window.location.href = "dashboard.html";
+        } catch(err) {
+            alert(err.message);
+        }
+    })
+
+  </script> -->
+</html>
