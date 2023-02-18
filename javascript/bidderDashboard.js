@@ -1,4 +1,14 @@
 async function fetchItems(filter=false, search=false) {
+    /*
+    Fetches items from API based on filter and search parameters.
+    If filter is true, filters items by category, bidding status and end time.
+    If search is true, filters items by search query.
+    Otherwise, fetches all items from the API.
+
+    :param filter: boolean flag indicating whether to filter items by category, bidding status and end time.
+    :param search: boolean flag indicating whether to filter items by search query.
+    :return: None
+    */
     const token = localStorage.getItem("token");
     let response;
     let data;
@@ -57,21 +67,42 @@ fetchItems()
 
 const filterBtn = document.getElementById("filterForm");
 filterBtn.addEventListener("click",function(event) {
-event.preventDefault();
-fetchItems(filter=true);
+  /*
+  Event listener for filter button.
+  Calls fetchItems() with filter=true to filter items by category, bidding status and end time.
+  Prevents the default form submission behavior.
+
+  :param event: event object
+  :return: None
+  */
+  event.preventDefault();
+  fetchItems(filter=true);
 });
 
 const searchBtn = document.getElementById("searchForm");
 searchBtn.addEventListener("click",function(event) {
-event.preventDefault();
-fetchItems(filter=false, search=true);
+  /*
+  Event listener for filter button.
+  Calls fetchItems() with search=true to search items.
+  Prevents the default form submission behavior.
+
+  :param event: event object
+  :return: None
+  */
+  event.preventDefault();
+  fetchItems(filter=false, search=true);
 });
 
 async function goToSingleItem(item) {
-try {
-    const url = `http://127.0.0.1:5501/bidderDetailDashboard.html?id=${item.id}`;
-    window.location.href = url;
-} catch (error) {
-    console.error(error);   
-}
+  /*
+  Redirects the user to ItemDetail page with item id
+  */
+  try {
+      // Construct the url for the single item detail page using the item's id
+      const url = `http://127.0.0.1:5501/bidderDetailDashboard.html?id=${item.id}`;
+      // Redirect the user to the single item detail page
+      window.location.href = url;
+  } catch (error) {
+      console.error(error);   
+  }
 }

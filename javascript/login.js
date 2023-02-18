@@ -1,5 +1,10 @@
-const loginBtn = document.getElementById("loginBtn");
-loginBtn.addEventListener("click", async (e) => {
+function login() {
+  /*
+  Attaches an event listener to the login button to handle user authentication.
+  */
+
+  const loginBtn = document.getElementById("loginBtn");
+  loginBtn.addEventListener("click", async (e) => {
   e.preventDefault();
 
   const username = document.getElementById("username").value;
@@ -16,4 +21,8 @@ loginBtn.addEventListener("click", async (e) => {
   } catch (error) {
     alert("Incorrect username or password. Please try again.");
   }
-});
+  });
+
+}
+
+login();
